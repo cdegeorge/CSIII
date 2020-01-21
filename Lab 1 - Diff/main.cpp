@@ -35,15 +35,21 @@ int main(int argc, char* argv[]) {
 
 	// Looping through the vectors and comparing them
 	int size = file1Lines.size() < file2Lines.size() // Determine larger size and set to loop to that
-		? file1Lines.size() : file2Lines.size();
+		? file2Lines.size() : file1Lines.size();
 
 	for (int i = 0; i < size; i++) {
-		file1String = file1Lines[i];
-		file2String = file2Lines[i];
-		
+		if (i < file1Lines.size())
+			file1String = file1Lines[i];
+		else
+			file1String.clear();
+		if (i < file2Lines.size())
+			file2String = file2Lines[i];
+		else
+			file2String.clear();
+
 		if (file1String != file2String) {
-			int lineSize = file1String.size() < file2String.size() // Determine larger size and set to loop to that
-				? file1String.size() : file2String.size();
+			int lineSize = file1String.length() < file2String.length() // Determine larger size and set to loop to that
+				? file2String.length() : file1String.length();
 
 			// Determining the index of the difference
 			int index = 0;
@@ -56,7 +62,10 @@ int main(int argc, char* argv[]) {
 					std::string out1String = arg1 + ": " + std::to_string(i) + ": " + file1String;
 					std::string out2String = arg2 + ": " + std::to_string(i) + ": " + file2String;
 
-					int diffPos = out1String.length() - (lineSize - index); // Find the position of the difference
+					int printSize = out1String.length() < out2String.length() // Determine larger size and set to loop to that
+						? out2String.length() : out1String.length();
+
+					int diffPos = printSize - (lineSize - index); // Find the position of the difference
 					std::string diffMarker(diffPos, ' ');
 					diffMarker += '^';
 

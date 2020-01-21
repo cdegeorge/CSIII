@@ -1,3 +1,4 @@
 Here is a file that is to be compared to file2.
 This is mainly just some random text that will
 put this code to the test. Let's hope it works.
+In file two, this file will be empty!
