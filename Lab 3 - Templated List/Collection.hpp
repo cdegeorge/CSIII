@@ -14,10 +14,10 @@ class Collection {
 public:
 	Collection() : front_(nullptr) {}
 
-	void addItem(const T &item);
-	void removeItem(const T& item);
-	void printCollection();
-	T lastItem() const { return front_->getData(); } // Returns the last item added to the collection
+	void add(const T &item);
+	void remove(const T& item);
+	void print();
+	T last() const { return front_->getData(); } // Returns the last item added to the collection
 
 	template <typename U>
 	friend bool equal(const Collection<U>&, const Collection<U>&);
@@ -27,7 +27,7 @@ private:
 
 // Takes an item as the argument and adds it to the collection
 template <typename T>
-void Collection<T>::addItem(const T& item) {
+void Collection<T>::add(const T& item) {
 	node<T>* newNode = new node<T>;
 	newNode->setData(item);
 	newNode->setNext(front_);
@@ -36,27 +36,34 @@ void Collection<T>::addItem(const T& item) {
 
 // Takes an item as the argument and removes all instances of this item from the collection
 template <typename T>
-void Collection<T>::removeItem(const T& item) {
+void Collection<T>::remove(const T& item) {
 	node<T>* previousNode = nullptr;
 	node<T>* currentNode = front_;
 	node<T>* nextNode;
 
 	while (currentNode != nullptr) {
 		nextNode = currentNode->getNext();
+
 		if (currentNode->getData() == item) {
-			if (previousNode != nullptr) // Move the previous node forward to fill empty space
-				previousNode->setNext(currentNode->getNext());
+			if (previousNode != nullptr) 
+				previousNode->setNext(nextNode); // Point previousNode to nextNode if we deleted currentNode
+			else if (currentNode == front_)
+				front_ = nextNode; // Need to move front_ if deleting first node
 			delete currentNode;
+			currentNode = nullptr; // Delete does not set currentNode back to a nullptr
 		}
-		if (currentNode != nullptr)
+
+		if (currentNode != nullptr) {
 			previousNode = currentNode;
+		}
+
 		currentNode = nextNode;
 	}
 }
 
 // Prints all items in the collection
 template <typename T>
-void Collection<T>::printCollection() {
+void Collection<T>::print() {
 	node<T>* currentNode = front_;
 
 	while (currentNode != nullptr) {
