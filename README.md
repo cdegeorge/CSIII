@@ -12,3 +12,6 @@ Custom templated collection class with add, remove, and get member function.
 
 ### Lab 4 - Class Roster
 Reads in class rosters and prints all students and the classes they are in.
+
+### Lab 5 - Associative Class Roster
+operates the same way as Lab 4 but uses the associative containers maps

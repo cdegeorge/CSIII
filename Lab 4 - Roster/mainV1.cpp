@@ -8,14 +8,12 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include <cstdlib>
 
 using std::ifstream;
-using std::string; using std::getline;
+using std::string;
 using std::list;
 using std::cout; using std::endl;
 using std::move;
-using std::iterator;
 
 // reading a list from a fileName
 void readRoster(list<string>& roster, string fileName);

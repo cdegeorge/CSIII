@@ -1,20 +1,21 @@
 // Reads in class rosters and prints a sorted list of all students and their classes
-// Uses class Student
-// CS44001 Assignment 4 - Class Roster V2
+// Uses associative containers
+// CS44001 Assignment 5 - Associative Class Roster
 // Connor DeGeorge
-// 2/10/20
+// 2/17/20
 
 #include <fstream>
 #include <iostream>
 #include <list>
 #include <string>
+#include <utility>
+#include <map>
 
 using std::ifstream;
-using std::string;
-using std::list;
+using std::string; using std::pair;
+using std::list; using std::map;
 using std::cout; using std::endl;
-using std::move;
-
+using std::move; using std::make_pair;
 
 class Student {
 public:
@@ -30,12 +31,10 @@ public:
     // force generation of default copy constructor
     Student(const Student& org) = default;
 
-    void addClass(string cls) { classes_.push_back(cls); }
     void printStudent() const;
 
     string getFirstName() const { return firstName_; }
     string getLastName() const { return lastName_; }
-    list<string> getClasses() const { return classes_; }
 
     // needed for unique() and for remove()
     friend bool operator== (Student left, Student right) {
@@ -52,19 +51,21 @@ public:
 private:
     string firstName_;
     string lastName_;
-    list<string> classes_;
 };
 
-void Student::printStudent() const {
-    cout << firstName_ << ", " << lastName_ << ": ";
-    for (string cls : classes_) {
-        cout << cls << " ";
-    }
-    cout << endl;
-}
+//void Student::printStudent() const {
+//    cout << firstName_ << ", " << lastName_ << ": ";
+//    for (string cls : classes_) {
+//        cout << cls << " ";
+//    }
+//    cout << endl;
+//}
 
 // reading a list from a fileName
 void readRoster(list<Student>& roster, string fileName);
+
+// Printing a student
+void printStudent(Student, list<string>);
 
 int main(int argc, char* argv[]) {
 
@@ -73,8 +74,8 @@ int main(int argc, char* argv[]) {
             << " list of courses" << endl; exit(1);
     }
 
-    // list of courses of students
-    list<Student> studentEntries;
+    // Map of students and the courses they belong to
+    map<Student, list<string>> studentEntries;
 
     for (int i = 1; i <= argc - 1; ++i) {
         // Read each file into roster
@@ -88,28 +89,34 @@ int main(int argc, char* argv[]) {
         for (Student studentsInRoster : roster) {
             // Checking if student is already in studentEntries
             bool contains = false;
-            for (Student& studentsInEnt : studentEntries) {
-                if (studentsInEnt.getFirstName() == studentsInRoster.getFirstName() &&
-                    studentsInEnt.getLastName() == studentsInRoster.getLastName()) {
-                    studentsInEnt.addClass(className);
+            map<Student, list<string>>::iterator it;
+            for (it = studentEntries.begin(); it != studentEntries.end(); ++it) {
+                if (it->first.getFirstName() == studentsInRoster.getFirstName() &&
+                    it->first.getLastName() == studentsInRoster.getLastName())
+                {
+                    it->second.push_back(className);
                     contains = true;
                     break;
                 }
             }
             if (!contains) {
                 Student s = Student(studentsInRoster.getFirstName(), studentsInRoster.getLastName());
-                s.addClass(className);
-                studentEntries.push_back(s);
+                list<string> classes = { className };
+                pair<Student, list<string>> p = make_pair(s, classes);
+                
+                studentEntries.insert(p);
             }
         }
     }
 
-    studentEntries.sort();
-
+    // Sorting class lists and printing roster
     cout << "All Students" << endl;
     cout << "last name, first name: courses enrolled" << endl;
-    for (Student student : studentEntries) {
-        student.printStudent();
+
+    map<Student, list<string>>::iterator it;
+    for (it = studentEntries.begin(); it != studentEntries.end(); ++it) {
+        it->second.sort();
+        printStudent(it->first, it->second);
     }
 
     return 0;
@@ -122,4 +129,11 @@ void readRoster(list<Student>& roster, string fileName) {
     while (course >> first >> last)
         roster.push_back(Student(first, last));
     course.close();
+}
+
+void printStudent(Student s, list<string> classes) {
+    cout << s.getLastName() << ", " << s.getFirstName() << ": ";
+    for (string c : classes)
+        cout << c << " ";
+    cout << endl;
 }
