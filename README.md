@@ -14,4 +14,8 @@ Custom templated collection class with add, remove, and get member function.
 Reads in class rosters and prints all students and the classes they are in.
 
 ### Lab 5 - Associative Class Roster
-operates the same way as Lab 4 but uses the associative containers maps
+operates the same way as Lab 4 but uses the associative containers maps.
+
+### Lab 6 - Apple/Orange Sort
+Orange: filters a vector of fruit and prints the colors of the oranges.
+Apple: Take user input and filters a vector of apples based on it.
