@@ -18,4 +18,8 @@ operates the same way as Lab 4 but uses the associative containers maps.
 
 ### Lab 6 - Apple/Orange Sort
 Orange: filters a vector of fruit and prints the colors of the oranges.
+
 Apple: Take user input and filters a vector of apples based on it.
+
+### Lab 7 - Hash Container
+Reconstructs given code to make it more efficient. Edits made to insert, operator[], and erase. Added rehash
