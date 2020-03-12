@@ -22,4 +22,9 @@ Orange: filters a vector of fruit and prints the colors of the oranges.
 Apple: Take user input and filters a vector of apples based on it.
 
 ### Lab 7 - Hash Container
-Reconstructs given code to make it more efficient. Edits made to insert, operator[], and erase. Added rehash
+Reconstructs given code to make it more efficient. Edits made to insert, operator[], and erase; Added rehash.
+
+### Lab 8 - Logger and Dice
+Logger: Uses the Singleton Design Pattern to append arguments of a log function to the end of log.txt
+
+Dice: A human pays against the computer and has three chances to get the highest score and can choose to pass or continue rolling.
