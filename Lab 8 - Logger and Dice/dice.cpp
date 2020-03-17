@@ -3,8 +3,6 @@
 // Connor DeGeorge
 // 3/16/20
 
-#include <ctime>
-#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -135,26 +133,7 @@ void Dice::printWinner() {
 }
 
 int main() {
-	srand(time(nullptr));
-
-	Game* gp = nullptr;
-
-	//// play chess 10 times
-	//for (int i = 0; i < 10; ++i) {
-	//	gp = new Chess;
-	//	gp->playGame();
-	//	delete gp;
-	//}
-
-
-	//// play monopoly 5 times
-	//for (int i = 0; i < 5; ++i) {
-	//	gp = new Monopoly;
-	//	gp->playGame();
-	//	delete gp;
-	//}
-
-	gp = new Dice;
+	Game* gp = new Dice;
 	gp->playGame();
 	delete gp;
 }

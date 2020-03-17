@@ -28,3 +28,8 @@ Reconstructs given code to make it more efficient. Edits made to insert, operato
 Logger: Uses the Singleton Design Pattern to append arguments of a log function to the end of log.txt
 
 Dice: A human pays against the computer and has three chances to get the highest score and can choose to pass or continue rolling.
+
+### Lab 9 - Car Dealership and Bridge Painted Square
+Car Dealership: Uses the Abstract Factory Design Pattern and shows computer customers shopping for cars and print if they found the type of car they were looking for.
+
+Bridge Painted Square: Uses the Bridge Design Pattern to draw different types of squares on screen.
