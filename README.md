@@ -33,3 +33,14 @@ Dice: A human pays against the computer and has three chances to get the highest
 Car Dealership: Uses the Abstract Factory Design Pattern and shows computer customers shopping for cars and print if they found the type of car they were looking for.
 
 Bridge Painted Square: Uses the Bridge Design Pattern to draw different types of squares on screen.
+
+### Lab 10 - Moving Squares and State Scheduler
+Moving Squares: Uses the Adapter Design Pattern to draw an orgional square and ask the user to resize and move that square.
+
+State Scheduler: Uses the State Design Pattern and Prototype Design Pattern to schedule processes and randomly decided where in the process cycle they are.
+
+### Lab 11 - Coffee Shack
+Uses the Decorator, Observer, and Chain of Responsibility Design Patterns to server customers the coffee they order by using a queue. Only certain baristas are allowed to handle certain toppings.
+
+### Lab 12 - Genealogy
+Uses the Composite Design Patterns to check a family tree and print the maiden names of the married women then, give marriage advice for two people to tell if they are legally allowed to marry the other person according to the family tree.

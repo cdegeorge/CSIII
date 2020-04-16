@@ -1,4 +1,4 @@
-// 
+// Implmentation of coffeeShack
 // CS44001 Assignment 11 - Coffee Shack
 // Connor DeGeorge
 // 4/13/20

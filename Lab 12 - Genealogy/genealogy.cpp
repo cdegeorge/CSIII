@@ -1,4 +1,5 @@
-// 
+// Prints the maiden names of married women and
+// gives marriage advice according to the family tree
 // CS44001 Assignment 11 - Genealogy
 // Connor DeGeorge
 // 4/20/20
